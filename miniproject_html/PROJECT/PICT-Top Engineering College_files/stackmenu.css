@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS Document */
+
+.dd_menu { padding:0px; margin:0; list-style-type:none; height:15px; z-index:9999; width:250px;}
+.dd_menu li {float:left; height:15px; border-right: solid 1px white; z-index:9999; }
+.dd_menu li a {padding:0px 9px; display:block; color:#fff; text-decoration:none; font:12px arial, verdana, sans-serif; font-weight: bold;}
+.dd_menu li:hover a {text-decoration:none;}
+
+.dd_menu ul {position:absolute; left:-9999px; top:-9999px; list-style-type:none;}
+.dd_menu li:hover {position:relative;}
+.dd_menu li:hover ul {left:0px; top:20px; background:lavender; padding:3px; border:1px solid grey; width:250px;}
+.dd_menu li:hover ul li {height:18px; border:none;}
+.dd_menu li:hover ul li a {height:18px; padding:0px; display:block; font-size:11px; width:250px; line-height:18px; text-indent:5px; color:#444; background-color:lavender; text-decoration:none; border:1px solid transparent;}
+.dd_menu li:hover ul li a:hover {height:18px; background:silver; color:#000; border:solid 1px #444;}

@@ -1,0 +1,69 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+
+
+/* ------------------------------ liens */
+a.type2 { color:#baee00; text-decoration:none; }
+a.type2:link { color:#baee00; }
+a.type2:visited { color:#baee00; }
+a.type2:hover { color:#baee00; text-decoration:underline; }
+a.type2:active { color:#baee00; }
+
+ul.list li {
+list-style-type:none;
+margin-left:20px;
+font-family:Geneva, Arial, Helvetica, sans-serif;
+font-size:12px;
+}
+
+ul.tabs {
+width:100%;
+overflow:hidden;
+font-family:Geneva, Arial, Helvetica, sans-serif;
+font-size:12px;
+font-size:12px;
+font-weight:bold;
+}
+
+ul.tabs li {
+list-style-type:none;
+display:block;
+float:left;
+color:#fff;
+padding:0 5px;
+margin-right:2px;
+border-bottom:2px solid #33a8f5;
+background-color:#0262da;
+
+ text-align: center;
+    width:156px;
+	
+cursor:pointer;
+}
+
+ul.tabs li:hover {
+background-color:#33a8f5;
+}
+
+ul.tabs li.current {
+border-bottom:2px solid #33a8f5;
+background-color:#33a8f5;
+padding:0 17px;
+}
+
+.tabscontent {
+border-top:2px solid #33a8f5;
+border-bottom:1px solid #CCC;
+border-left:1px solid #CCC;
+border-right:1px solid #CCC;
+padding:8px 5px 5px 5px;
+display:none;
+width:100%;
+text-align:justify;
+background-color:;
+color:#000;
+height:118px;
+}

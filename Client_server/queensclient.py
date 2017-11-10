@@ -1,0 +1,118 @@
+import socket, pickle, sys
+
+import numpy as num_p
+
+sys.setrecursionlimit(1000000000)
+
+placed_first=0
+class nQueens:
+
+    def __init__(self, dimension_of_board):
+        self.dimension = dimension_of_board
+        self.columns = [] * self.dimension
+        self.num_of_places = 0
+        self.num_of_backtracks = 0
+        
+    def placeFirst(self):
+        self.columns.append(placed_first)
+        
+    def place(self,row_start=0):
+        if len(self.columns) == self.dimension:
+            print('Solution found! The board dimension was: ' + str(self.dimension))
+            print(str(self.num_of_places) + ' total places were made.')
+            print(str(self.num_of_backtracks) + ' total backtracks were executed.')
+            print(self.columns)
+	    board = [[0 for x in range(8)] for x in range(8)]
+	    board[0][self.columns[0]]=1;
+	    board[1][self.columns[1]]=1;
+	    board[2][self.columns[2]]=1;
+	    board[3][self.columns[3]]=1;
+	    board[4][self.columns[4]]=1;
+	    board[4][self.columns[5]]=1;
+	    board[6][self.columns[6]]=1;
+	    board[7][self.columns[7]]=1;
+	    print board
+	    for i in range(8):
+	    	for j in range(8):
+		    print str(board[i][j])+" ",
+		print "\n"
+            return board
+        else:
+            for row in range(row_start, self.dimension):
+               
+                if self.isSafe(len(self.columns), row) is True:
+                    self.columns.append(row)
+                    self.num_of_places += 1
+                    return self.place()
+            else:
+                row_last = self.columns.pop()
+                self.num_of_backtracks += 1
+                return self.place(row_start=row_last + 1)
+
+    def isSafe(self, col, row):
+        for row_threat in self.columns:
+            col_threat = self.columns.index(row_threat)
+            if row == row_threat or col == self.columns.index(row_threat):
+                return False
+            elif row_threat + col_threat == row + col or row_threat - col_threat == row - col:
+                return False
+        return True
+
+n = 8
+
+HOST = socket.gethostname()
+HOST ='localhost'
+PORT = 12348
+
+socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+socket.connect((HOST, PORT))
+data = socket.recv(10000)
+
+itemlist = pickle.loads(data) 
+print itemlist
+dataList = []
+for s in itemlist:
+    dataList.append(s.getAttribute("index").encode("utf-8"))
+print dataList
+
+
+for s in dataList:
+
+    if(s!=' '):
+        placed_first=int(s)
+        break
+        
+print "First queen placed in first row at: ",placed_first
+queens = nQueens(8)
+queens.placeFirst()
+queens.place(0)
+
+#convert board to numpy array for pretty printing
+board = num_p.array([['*'] * n] * n)
+for queen in queens.columns:
+    board[queens.columns.index(queen), queen] = 'Q'
+socket.send(board)
+
+'''
+[root@localhost B1]# python queens_client.py 
+[<DOM Element: Item at 0x1e12200>, <DOM Element: Item at 0x1e55710>, <DOM Element: Item at 0x1e557a0>, <DOM Element: Item at 0x1e55830>, <DOM Element: Item at 0x1e558c0>, <DOM Element: Item at 0x1e55950>, <DOM Element: Item at 0x1e559e0>, <DOM Element: Item at 0x1e55a70>]
+['0', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+First queen placed in first row at:  0
+Solution found! The board dimension was: 8
+112 total places were made.
+105 total backtracks were executed.
+
+[0, 4, 7, 5, 2, 6, 1, 3]
+
+[[1, 0, 0, 0, 0, 0, 0, 0], 
+[0, 0, 0, 0, 1, 0, 0, 0], 
+[0, 0, 0, 0, 0, 0, 0, 1], 
+[0, 0, 0, 0, 0, 1, 0, 0], 
+[0, 0, 1, 0, 0, 0, 1, 0],
+[0, 0, 0, 0, 0, 0, 0, 0],
+[0, 1, 0, 0, 0, 0, 0, 0], 
+[0, 0, 0, 1, 0, 0, 0, 0]]
+
+[root@localhost B1]# ^C
+[root@localhost B1]# 
+'''

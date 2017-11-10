@@ -1,0 +1,17 @@
+div#header 
+{
+	width: 510px;
+	background-color: blue;
+	margin: 0 auto 0 auto;
+	margin-left:180px;
+
+}
+
+#content 
+{
+  width: 100px ;
+  margin-left: auto ;
+  margin-right: auto ;
+  margin: 1 auto;
+  background-color: gray;
+}

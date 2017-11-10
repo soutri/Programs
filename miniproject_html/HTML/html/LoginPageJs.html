@@ -1,0 +1,67 @@
+<Html>
+	<Head>
+		<Title>Login Validation...</Title>
+		<style>
+	#td1,#td2{color:red};
+		</style>
+	</Head>
+<body>
+<table>
+<tr>
+	<td>User Name </td>
+	<td><input type="text" name="uname"></td><td id="td1"></td>
+</tr>
+<tr>
+	<td>Password </td>
+	<td><input type="password" name="pass"></td><td id="td2"></td>
+</tr>
+<tr><td><input type="submit" value="Login" onclick=validation()></td>
+<td><input type="submit" value="Reset"></td></tr>
+</table>
+
+<div id="msg"></div>
+
+</body>
+<script>
+function validation()
+{
+	document.getElementById("td1").value="";
+	document.getElementById("td2").value="";		
+	document.getElementById("msg").value="";
+	
+	var uname=document.getElementById("uname").value;
+	var pass=document.getElementById("pass").value;
+
+if(uname!="")
+{
+	if(pass=="")
+	{
+document.getElementById("td2").innerHTML="Please Enter Password...";
+	}
+	else if(uname=="admin")
+	{
+		if(pass=="Newuser123")
+		{
+			document.getElementById("msg").innerHTML="Welcome User...";
+		}
+		else
+		{
+		document.getElementById("td2").innerHTML="Inavlid Password...";
+		document.getElementById("uname").value="";
+		document.getElementById("pass").value="";
+		
+		}
+	}
+	else
+	{
+		document.getElementById("td1").innerHTML="Invalid User Name...";
+	}
+}
+else
+{
+	document.getElementById("td1").innerHTML="Please Enter User Name...";
+}
+}
+
+</script>
+</Html>

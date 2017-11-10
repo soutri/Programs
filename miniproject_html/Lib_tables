@@ -1,0 +1,133 @@
+mysql> describe category;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| cat_id   | int(11)      | NO   | PRI | NULL    |       |
+| cat_name | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> describe books;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| book_id   | int(11)      | NO   | PRI | NULL    |       |
+| book_name | varchar(100) | YES  |     | NULL    |       |
+| author    | varchar(100) | YES  |     | NULL    |       |
+| cat_id    | int(11)      | NO   | MUL | NULL    |       |
+| rack_no   | int(11)      | NO   |     | NULL    |       |
+| price     | int(11)      | NO   |     | NULL    |       |
+| copies    | int(11)      | NO   |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> describe Librarian;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | NO   | PRI | NULL    |       |
+| fname    | varchar(20) | NO   |     | NULL    |       |
+| mname    | varchar(20) | NO   |     | NULL    |       |
+| lname    | varchar(20) | NO   |     | NULL    |       |
+| contact  | bigint(10)  | NO   |     | NULL    |       |
+| addr     | text        | YES  |     | NULL    |       |
+| email    | text        | YES  |     | NULL    |       |
+| username | varchar(20) | NO   |     | NULL    |       |
+| password | varchar(20) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> describe Admin;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | NO   | PRI | NULL    |       |
+| fname    | varchar(20) | NO   |     | NULL    |       |
+| mname    | varchar(20) | NO   |     | NULL    |       |
+| lname    | varchar(20) | NO   |     | NULL    |       |
+| contact  | bigint(10)  | NO   |     | NULL    |       |
+| addr     | text        | YES  |     | NULL    |       |
+| email    | text        | YES  |     | NULL    |       |
+| username | varchar(20) | NO   |     | NULL    |       |
+| password | varchar(20) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+mysql> describe Staff;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | int(11)     | NO   | PRI | NULL    |       |
+| fname       | varchar(20) | NO   |     | NULL    |       |
+| mname       | varchar(20) | NO   |     | NULL    |       |
+| lname       | varchar(20) | NO   |     | NULL    |       |
+| contact     | bigint(10)  | NO   |     | NULL    |       |
+| addr        | text        | YES  |     | NULL    |       |
+| email       | text        | YES  |     | NULL    |       |
+| designation | varchar(50) | YES  |     | NULL    |       |
+| username    | varchar(20) | NO   |     | NULL    |       |
+| password    | varchar(20) | NO   |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+mysql> describe Student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | NO   | PRI | NULL    |       |
+| fname    | varchar(20) | NO   |     | NULL    |       |
+| mname    | varchar(20) | NO   |     | NULL    |       |
+| lname    | varchar(20) | NO   |     | NULL    |       |
+| contact  | bigint(10)  | NO   |     | NULL    |       |
+| addr     | text        | YES  |     | NULL    |       |
+| email    | text        | YES  |     | NULL    |       |
+| branch   | varchar(50) | YES  |     | NULL    |       |
+| username | varchar(20) | NO   |     | NULL    |       |
+| password | varchar(20) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+mysql> describe Issue_staff;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| staff_id    | int(11) | NO   | MUL | NULL    |       |
+| book_id     | int(11) | NO   | MUL | NULL    |       |
+| issue_date  | date    | YES  |     | NULL    |       |
+| return_date | date    | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> describe Issue_stud;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| stud_id     | int(11) | NO   | MUL | NULL    |       |
+| book_id     | int(11) | NO   | MUL | NULL    |       |
+| issue_date  | date    | YES  |     | NULL    |       |
+| return_date | date    | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> describe book_stud;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| stud_id      | int(11) | NO   | MUL | NULL    |       |
+| book_id      | int(11) | NO   | MUL | NULL    |       |
+| booking_date | date    | YES  |     | NULL    |       |
+| valid_upto   | date    | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> describe book_staff;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| staff_id     | int(11) | NO   | MUL | NULL    |       |
+| book_id      | int(11) | NO   | MUL | NULL    |       |
+| booking_date | date    | YES  |     | NULL    |       |
+| valid_upto   | date    | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+

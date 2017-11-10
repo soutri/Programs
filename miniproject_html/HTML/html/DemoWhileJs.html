@@ -1,0 +1,37 @@
+<html>
+	<head>
+	<title>Demo While...</title>
+	</head>
+
+	<span id="eg6op">magic</span>
+
+
+	<body>
+
+Select No : <Select name="table" onchange=display()>
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+</Select>
+		
+	</body>
+	<script>
+	function display()
+	{
+		var no = document.getElementById("table").value;
+		var op = '<br /><br />';
+	for(var i=1;i <= 10;i++)
+	{
+			op += no+' x '+i+' = '+(no*i)+'<br />';
+	}
+	document.getElementById("eg6op").innerHTML = op;
+}
+</script>	
+</html>

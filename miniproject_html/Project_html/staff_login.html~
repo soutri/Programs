@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Log-in</title>
+
+    
+</head>
+
+
+<table>
+    <tr>
+        <td><img src="pict.jpeg" align="middle"></td>
+    </tr>
+</table>
+
+<br>
+    <h1>Staff-Login</h1><br>
+  	<form action="stafflogin.jsp" method="post">
+    	<input type="text" name="username" placeholder="Username">
+    	<input type="password" name="password" placeholder="Password">
+    	<input type="submit" name="login"  value="login">
+  	</form>
+
+</body>
+
+</html>

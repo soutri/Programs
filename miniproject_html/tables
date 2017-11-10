@@ -1,0 +1,30 @@
+create table category(cat_id int not null,cat_name varchar(100), primary key(cat_id));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table books(book_id int not null,book_name varchar(100), author varchar(100), cat_id int not null, rack_no not null, price int not null, copies int not null, foreign key(cat_id) references category(cat_id),primary key(book_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null, price int not null, copies int not null, foreign key(cat_id) reference' at line 1
+mysql> create table books(book_id int not null,book_name varchar(100), author varchar(100), cat_id int not null, rack_no int not null, price int not null, copies int not null, foreign key(cat_id) references category(cat_id),primary key(book_id));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table Librarian(id int not null,fname varchar(20) not null,mname varchar(20) not null,lname varchar(20) not null,contact bigint(10) not null,addr text,email text, username varchar(20) not null,password varchar(20) not null,primary key(id));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> create table Admin(id int not null,fname varchar(20) not null,mname varchar(20) not null,lname varchar(20) not null,contact bigint(10) not null,addr text,email text, username varchar(20) not null,password varchar(20) not null,primary key(id));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> create table Staff(id int not null,fname varchar(20) not null,mname varchar(20) not null,lname varchar(20) not null,contact bigint(10) not null,addr text,email text,designation varchar(50),username varchar(20) not null,password varchar(20) not null,primary key(id));
+Query OK, 0 rows affected (0.56 sec)
+
+mysql> create table Student(id int not null,fname varchar(20) not null,mname varchar(20) not null,lname varchar(20) not null,contact bigint(10) not null,addr text,email text,branch varchar(50),username varchar(20) not null,password varchar(20) not null,primary key(id));
+Query OK, 0 rows affected (0.51 sec)
+
+mysql> create table Issue_staff(staff_id int not null,book_id int not null,issue_date date,return_date date,foreign key(staff_id) references Staff(id), foreign key(book_id) references books(book_id));
+Query OK, 0 rows affected (0.58 sec)
+
+mysql> create table Issue_stud(stud_id int not null,book_id int not null,issue_date date,return_date date,foreign key(stud_id) references Student(id), foreign key(book_id) references books(book_id));
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> create table book_stud(stud_id int not null,book_id int not null,booking_date date,valid_upto date,foreign key(stud_id) references Student(id), foreign key(book_id) references books(book_id));
+Query OK, 0 rows affected (0.58 sec)
+
+

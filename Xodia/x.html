@@ -1,0 +1,18 @@
+<html>
+<body>
+<script>
+fh = fopen('C:\\Users\\Soutri\\tp.txt', 0); // Open the file for reading.
+if(fh!=-1) // Check if the file has been successfully opened.
+{
+    length = flength(fh); // Get the length of the file.
+    str = fread(fh, length); // Read in the entire file.
+    fclose(fh); // Close the file.
+
+    // Display the contents of the file.
+    write(" The file contains: " + str);
+}
+else
+	write("FAILED :P");
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+import socket, pickle
+
+import sys
+import numpy as num_p
+from xml.dom import minidom
+xmlfilename = minidom.parse('data.xml')
+itemlist = xmlfilename.getElementsByTagName('Item')
+
+
+
+s = socket.socket()         # Create a socket object
+host = socket.gethostname() # Get local machine name
+port = 12348               # Reserve a port for your service.
+s.bind((host, port))        # Bind to the port
+
+s.listen(3)                 # Now wait for client connection.
+
+
+
+
+while True:
+	c, addr = s.accept()     # Establish connection with client.
+	print 'Got connection from', addr
+
+	c.send(pickle.dumps(itemlist))
+
+	op = c.recv(10000)
+	print "Soln is "
+	print op
+ 
+	c.close()
+

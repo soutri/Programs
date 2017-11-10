@@ -1,0 +1,17 @@
+<Employee>
+	<Emp empid="101">
+		<FName>Salman</FName>
+		<LName>Khan</LName>
+		<Phone>99999999</Phone>
+	</Emp>
+	<Emp empid="102">
+		<FName>Salman</FName>
+		<LName>Khan</LName>
+		<Phone>99999999</Phone>
+	</Emp>
+	<Emp empid="103">
+		<FName>Salman</FName>
+		<LName>Khan</LName>
+		<Phone>99999999</Phone>
+	</Emp>
+</Employee>

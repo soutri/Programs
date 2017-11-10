@@ -1,0 +1,37 @@
+h1,h2{
+	color:red;
+}
+p
+{
+	color:blue;
+	font-size:25px;
+}
+#p2
+{
+	color:red;
+}
+#div1
+{
+	background:green;
+}
+#div2
+{	
+	background:yellow;
+}
+#div2#p3
+{
+	background:pink;
+}
+#div3#even
+{
+	background:yellow;
+}
+#div3#odd
+{
+	background:red;
+}
+table
+{
+	bordercolor:green;
+	border:2;
+}

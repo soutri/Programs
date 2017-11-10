@@ -1,0 +1,64 @@
+Overview :
+Infrastructure as a Service (IaaS) is the most offered cloud service layer by public cloud service providers and also the most used by customers.  Selecting a proper IaaS framework is a difficult task since the customers have different requirements and all IaaS frameworks offer various advantages. System administrators mostly care about easy deployment, scalability, supporting different operating systems, hypervisors, and licensing. However, the main concern of cloud computing customers is the security. New challenges arise due to multitenancy, virtualization, data and application transfer to third party.
+Building a private cloud is a good approach that might solve most of the security challenges, since it mitigates the security risks. However, private clouds lack scalability and elasticity. Therefore, most customers will make their decisions in favor of public clouds, since they offer scalability, elasticity and cost reduction. Most researches conclude that the main obstacle for public cloud solutions is the security.
+Thus biggest security concerns faced by customers in public cloud solutions are:
+1)Confidentiality
+2)Integrity
+3)Availability
+We are interested in analyzing the security vulnerabilities from private or public networks both on virtual machine instances and OpenStack cloud nodes. We focus on OpenStack open source cloud since it is a scalable
+solution and more than 60 leading companies participate in its development. The goal of this research is to check the validity of the following hypotheses:
+1) H1: The cloud solution is more vulnerable from inside than outside. Inside vulnerabilities subsume the outside vulnerabilities.
+2) H2: The multi-tenant environment raises new security vulnerabilities risks from inside the cloud, both for the tenants and the OpenStack cloud provider.
+3) H3: Windows based virtual machine instances are more vulnerable than Linux based Ubuntu and Fedora .
+
+Security Assesment :
+ The goal of the assessments is to determine the vulnerabilities of the OpenStack cloud nodes i.e Compute and Controller deployed in one physical server and virtual machine instances with different operating systems, both from inside and outside the OpenStack cloud.
+
+a) Target :
+ 1) The first target group covers the assessment of physical OpenStack
+server node which is installed with Ubuntu Server 12.04 64-bit operating system.
+2)  The second target group covers the assessment of virtual machine instances hosted in the cloud with operating systems:
+• Windows OS Standard 64 bit
+• Ubuntu OS Server Edition 64 bit
+• Fedora OS 64 bit.
+b) Assesment :
+We realize two different assessments using Nessus 5 vulnerability and configuration assessment scanner. Nessus scans all TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) ports, as well as the
+vulnerabilities of the services that work on certain opened port. Each vulnerability is rated as derived from the associated Common Vulnerability Scoring System (CVSS) score:
+• Informal if CVSS score is 0;
+• Low for CVSS score ? {1, 2, 3};
+• Medium for CVSS score ? {4, 5, 6};
+• High for CVSS score ? {7, 8, 9}; 
+• Critical if CVSS score is 10.
+
+1) Inside Security Assessment: The Nessus client is deployed on one virtual machine instance. It scans the three virtual machine instances with different operating systems and cloud physical server node. This assessment from
+inside simulates the tenant and its goal is to assess the vulnerabilities that arise from the cloud multi-tenancy. OpenStack private network is used to communicate among the target inside virtual machine instances, the cloud physical node and the virtual machine instance with Nessus client.
+2) Outside Security Assessment: The Nessus client is deployed on a workstation outside the OpenStack cloud i.e. on a public network. It also scans the same three virtual machine instances with different operating systems hosted in the OpenStack cloud and the cloud physical server
+node. This assessment goal is to assess the vulnerabilities that arise for virtual machine instances and the OpenStack cloud services outside the cloud. OpenStack public network and floating IP addresses are used for communication with virtual machines.
+
+Result of the assesments:
+1) Outside Vulnerabilities : 
+High : 0
+Medium : 12
+Low :  1
+
+2) Inside Vulnerabilities : 
+High : 0
+Medium : 13
+Low :  3
+
+a) The results confirm the hypothesis H1 that there are more inside vulnerabilities which subsume the outside vulnerabilities. 13 medium and 3 low vulnerabilities are detected from inside and only 1 low and 12 medium vulnerabilities are detected from outside.
+b) Web Server Generic XSS (Cross-site scripting) and 6 Web Server Generic Cookie Injection vulnerabilities (medium) are detected by both assessments on several ports. We conclude that the web server is prone to cross-site scripting and cookie injection attacks. Therefore, new patches must be developed in order to secure two assessed vulnerabilities. Common low vulnerability is the usage of plain text authentication forms which should be transmitted encrypted over secured HTTPS.
+c) Assessment of inside vulnerabilities detected 1 additional medium vulnerability, i.e., the DNS (Domain Name System) server is vulnerable to cache snooping attacks. DNS software vendor should fix it.
+d) Two additional low vulnerabilities are detected DHCP (Dynamic Host Configuration Protocol) server may expose information about the associated network and applying filtering will keep the information off the network
+and mitigate the risk of this vulnerability. The web server leaks a private IP address that is usually hidden behind a NAT (Network Address Translation) Firewall or proxy server. This is not a real vulnerability since our private IP address will be a public IP in real world scenario.
+
+Virtual Machine Instances Vulnarabilities :
+a) The Nessus client has not detected any vulnerability neither on Ubuntu nor on Fedora operating system. 1 high and 1 medium vulnerabilities are detected on Windows operating system with the assessment from outside the OpenStack. Windows could allow arbitrary code execution (high vulnerability) in the implementation of the Remote Desktop Protocol (RDP). The problem with Windows lies in the requirement to activate remote desktop to connect to Windows, instead of secured SSH (Secure Shell) protocol to connect on Linux based operating systems. However, installing the existing patch will secure the vulnerability.
+b) Linux based operating systems are not detected with any security vulnerability from outside the OpenStack cloud, as well. The same 1 high and 1 medium vulnerabilities are detected from inside the virtual machine instance with Windows operating system. However, 3 additional medium vulnerabilities are detected.
+1) Windows is using weak cryptography by default for RDP and changing RDP encryption level to ”High” or ”FIPS Compliant” will mitigate
+this vulnerability.
+2) The virtual machine instance is vulnerable to a man-in-the-middle attack. Forcing. Summary results of inside security assessment on instances SSL(Secure Sockets Layer) or RDP with NLA will secure the vulnerability.
+3) Last detetcted medium vulnerability is man inthemiddle attack against the Server Message Block which can be secured by enforcing message
+signing.
+
+

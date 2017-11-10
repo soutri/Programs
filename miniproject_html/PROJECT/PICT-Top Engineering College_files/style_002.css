@@ -1,0 +1,26 @@
+﻿/* DUALSLIDER CSS */
+/* AUTHOR: ROB PHILLIPS  =  HUGO & CAT LTD */
+/* VERSION: 0.1 */
+
+
+.columns {
+	margin: 0 0 15px 0;
+	
+	border-bottom:1px solid #ccc;
+	background: transparent url(../images/columns_bg.png) no-repeat 100% 100%;
+	border-top:1px solid #ccc;
+	padding: 15px 0 10px 0;
+}
+
+.columns .col{
+	float:left;
+	width: 150px;
+	margin: 0 0 0 10px;
+	
+}
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title>Function Demo...</title>	
+	</head>
+
+	<body>
+<input type="submit" value="click here" onClick=show(10,20)>	
+<input type="submit" value="click here" value="date" onClick=displayDate()>	
+<input type="submit" value="click here" value="date" onClick=displayBlink()>	
+
+<div id="t1" onmouseover=testmouseover() onmouseout=testmouseout()>
+Hello...
+</div>
+</body>
+
+<script>
+function testmouseover()
+{
+	document.getElementById("t1").innerHTML="Hiiiiiii";	
+}
+function testmouseout()
+{
+	document.getElementById("t1").innerHTML="Bye";	
+}
+
+
+
+function displayBlink()
+{
+	var a="Hello..";
+	document.write(a.blink());
+}
+function displayString()
+{
+	var str="Welcome";
+	alert(str.length);
+	alert(str.charAt(2));
+	alert(str.indexOf("c"));
+	alert(str.substring(5
+,1));
+
+}
+function displayDate()
+{
+	var md=new Date();
+	alert(md.getYear()+"  :  "+md.getMonth());
+
+}
+function show(x,y)
+{
+	alert("hiii.");
+	var a=display(x,y);
+
+	var b=Math.sqrt(x);
+
+	alert("Value of b is :"+b);
+	alert(a);
+}
+function display(a,b)
+{
+	return (a+b);
+}
+</script>
+</html>
